@@ -1,505 +1,954 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <!-- Meta Tags SEO -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Moody.Cake - Toko kue premium dengan rasa yang memikat hati. Pesan kue custom untuk acara spesial Anda.">
-    <title>Moody.Cake - Toko Kue Premium</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MoodyCake — Cake Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink-1: #ffeef8;
+      --pink-2: #ffb6d5;
+      --pink-3: #ff6fa8;
+      --accent: #6b2b4a;
+      --muted: #6b5b6b;
+      --card-shadow: 0 8px 30px rgba(107,43,74,0.12);
+      --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,var(--pink-1), #fff 40%);
+      color:var(--accent);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+    header{
+      padding:28px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      position:relative;
+    }
+    .brand{
+      display:flex;align-items:center;gap:16px;
+    }
+    .logo{
+      width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--pink-3),var(--pink-2));
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:'Playfair Display';font-size:32px;box-shadow:var(--card-shadow);
+      flex-shrink:0;
+      transition:all 0.3s;
+    }
+    .logo:hover{transform:rotate(5deg) scale(1.05)}
+    .brand-name{
+      font-family:'Playfair Display';
+      font-size:24px;
+      font-weight:700;
+      background:linear-gradient(135deg, var(--pink-3), var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      letter-spacing:1px;
+      text-shadow:0 2px 10px rgba(255,111,168,0.2);
+    }
+    .brand-tagline{
+      font-size:11px;
+      color:var(--pink-3);
+      font-weight:600;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:600;cursor:pointer;transition:all 0.3s}
+    nav a:hover{background:var(--pink-1)}
     
-    <!-- CSS Styles -->
-    <style>
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #5a4a4a;
-            background-color: #fffaf5;
-            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Pastel Color Palette */
-        :root {
-            --peach: #ffd6cc;
-            --pink: #ffc2d1;
-            --cream: #fffaf0;
-            --light-pink: #ffe4e6;
-            --dark-pink: #d291bc;
-            --text-color: #5a4a4a;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--dark-pink);
-            text-decoration: none;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: var(--dark-pink);
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--peach) 0%, var(--pink) 100%);
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--text-color);
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--dark-pink);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s, background-color 0.3s;
-            min-height: 44px; /* Touch-friendly for mobile */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            background-color: #c47ba5;
-        }
-        
-        /* Products Section */
-        .products {
-            padding: 4rem 0;
-            background-color: var(--cream);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.2rem;
-            color: var(--text-color);
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .product-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .product-info {
-            padding: 1.5rem;
-        }
-        
-        .product-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-        
-        .product-desc {
-            margin-bottom: 1rem;
-            color: var(--text-color);
-            font-size: 0.95rem;
-        }
-        
-        .product-price {
-            font-weight: bold;
-            color: var(--dark-pink);
-            margin-bottom: 1rem;
-        }
-        
-        /* Gallery Section */
-        .gallery {
-            padding: 4rem 0;
-            background-color: white;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-        
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            height: 250px;
-        }
-        
-        .gallery-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .gallery-image:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Order Form Section */
-        .order-form {
-            padding: 4rem 0;
-            background-color: var(--light-pink);
-        }
-        
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            min-height: 44px; /* Touch-friendly */
-        }
-        
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--text-color);
-            color: white;
-            padding: 3rem 0;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--pink);
-        }
-        
-        .whatsapp-link {
-            display: inline-block;
-            background-color: #25D366;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            margin-top: 1rem;
-            font-weight: bold;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 1.5rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px; /* Reduce padding on smaller screens */
-            }
-            
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero {
-                padding: 3rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .products {
-                padding: 3rem 0;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr; /* Single column on tablet/mobile */
-                gap: 1.5rem;
-            }
-            
-            .gallery {
-                padding: 3rem 0;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .order-form {
-                padding: 3rem 0;
-            }
-            
-            .form-container {
-                padding: 1.5rem;
-                margin: 0 10px;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 1.5rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.8rem;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .btn {
-                padding: 1rem 1.5rem; /* Larger padding for touch */
-                width: 100%; /* Full width on small screens for buttons in products */
-            }
-            
-            .product-info .btn {
-                width: 100%;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr; /* Single column on phone */
-                gap: 1rem;
-            }
-            
-            .gallery-item {
-                height: 200px; /* Smaller height on mobile */
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 1.5rem;
-            }
-            
-            .whatsapp-link {
-                width: 100%;
-            }
-        }
-    </style>
+    .cart-btn{
+      position:relative;
+      background:var(--pink-3);
+      color:white;
+      border:none;
+      padding:10px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:600;
+      box-shadow:var(--card-shadow);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      transition:all 0.3s;
+    }
+    .cart-btn:hover{transform:scale(1.05)}
+    .cart-badge{
+      background:var(--accent);
+      color:white;
+      border-radius:50%;
+      width:20px;
+      height:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:11px;
+      font-weight:700;
+    }
+
+    /* Floating Cake Character */
+    .cake-character{
+      position:fixed;
+      bottom:30px;
+      right:30px;
+      width:100px;
+      height:100px;
+      z-index:999;
+      animation: float 3s ease-in-out infinite;
+      cursor:pointer;
+      transition: transform 0.3s;
+    }
+    .cake-character:hover{
+      transform: scale(1.1) rotate(5deg);
+    }
+    @keyframes float{
+      0%, 100%{transform:translateY(0px)}
+      50%{transform:translateY(-15px)}
+    }
+    .cake-character svg{
+      filter: drop-shadow(0 4px 12px rgba(107,43,74,0.3));
+    }
+
+    .hero{
+      display:grid;grid-template-columns:1fr 520px;gap:24px;padding:24px;
+      align-items:center;max-width:1100px;margin:0 auto;
+    }
+    .hero-left{padding:28px;background:var(--glass);border-radius:18px;box-shadow:var(--card-shadow)}
+    .hero h1{font-family:'Playfair Display';font-size:44px;margin:0 0 8px}
+    .hero p.lead{margin:0 0 16px;color:var(--muted)}
+    .hero .btns{display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:12px;border:0;font-weight:700;cursor:pointer;transition:all 0.3s}
+    .btn:hover{transform:translateY(-2px);box-shadow:var(--card-shadow)}
+    .btn-pink{background:var(--pink-3);color:white}
+    .btn-outline{background:transparent;border:2px solid var(--pink-2);color:var(--accent)}
+
+    .card-gallery{Display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .card{background:white;border-radius:14px;padding:12px;box-shadow:var(--card-shadow);display:flex;gap:12px;align-items:center;cursor:pointer;transition:all 0.3s}
+    .card:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(107,43,74,0.15)}
+    .card img{width:110px;height:90px;object-fit:cover;border-radius:10px}
+    .price{font-weight:800;color:var(--pink-3)}
+
+    /* Menu Tabs */
+    .menu-tabs{
+      display:flex;
+      gap:12px;
+      margin:20px 0;
+      flex-wrap:wrap;
+    }
+    .tab-btn{
+      padding:10px 20px;
+      border-radius:999px;
+      border:2px solid var(--pink-2);
+      background:white;
+      color:var(--accent);
+      font-weight:600;
+      cursor:pointer;
+      transition:all 0.3s;
+    }
+    .tab-btn:hover{transform:scale(1.05)}
+    .tab-btn.active{
+      background:var(--pink-3);
+      color:white;
+      border-color:var(--pink-3);
+    }
+
+    .gallery{max-width:1100px;margin:28px auto;padding:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+    .product{background:white;border-radius:14px;padding:12px;box-shadow:var(--card-shadow);overflow:hidden;transition:transform 0.3s;cursor:pointer}
+    .product:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(107,43,74,0.18)}
+    .product img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+    .product .meta{padding:10px}
+    .product h3{margin:0 0 6px;font-size:18px}
+    .product p{margin:0 0 9px;color:var(--muted);font-size:14px}
+    .product .price{font-weight:800}
+    .product .actions{display:flex;gap:8px}
+    .product .badge{
+      display:inline-block;
+      padding:4px 10px;
+      border-radius:12px;
+      font-size:11px;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+    .badge-featured{background:#ffd700;color:#6b2b4a}
+    .badge-new{background:#4ecdc4;color:white}
+    .badge-popular{background:#ff6b6b;color:white}
+
+    /* Modal */
+    .modal{
+      display:none;
+      position:fixed;
+      top:0;left:0;right:0;bottom:0;
+      background:rgba(0,0,0,0.6);
+      z-index:1000;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .modal.active{display:flex}
+    .modal-content{
+      background:white;
+      border-radius:18px;
+      max-width:600px;
+      width:100%;
+      max-height:90vh;
+      overflow-y:auto;
+      box-shadow:0 20px 60px rgba(0,0,0,0.3);
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp{
+      from{transform:translateY(30px);opacity:0}
+      to{transform:translateY(0);opacity:1}
+    }
+    .modal-header{
+      padding:20px;
+      border-bottom:1px solid #f0f0f0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .modal-body{padding:20px}
+    .modal-body img{width:100%;border-radius:12px;margin-bottom:16px}
+    .close-btn{
+      background:transparent;
+      border:none;
+      font-size:28px;
+      cursor:pointer;
+      color:var(--muted);
+      line-height:1;
+      transition:all 0.3s;
+    }
+    .close-btn:hover{color:var(--pink-3);transform:rotate(90deg)}
+    .quantity-control{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:16px 0;
+    }
+    .qty-btn{
+      width:36px;
+      height:36px;
+      border-radius:8px;
+      border:2px solid var(--pink-2);
+      background:white;
+      cursor:pointer;
+      font-weight:700;
+      color:var(--accent);
+      transition:all 0.3s;
+    }
+    .qty-btn:hover{background:var(--pink-1);transform:scale(1.1)}
+    .qty-display{
+      font-size:18px;
+      font-weight:700;
+      min-width:40px;
+      text-align:center;
+    }
+
+    /* Cart Page */
+    .cart-page{
+      display:none;
+      max-width:900px;
+      margin:40px auto;
+      padding:24px;
+    }
+    .cart-page.active{display:block}
+    .cart-item{
+      background:white;
+      border-radius:14px;
+      padding:16px;
+      margin-bottom:12px;
+      display:flex;
+      gap:16px;
+      align-items:center;
+      box-shadow:var(--card-shadow);
+    }
+    .cart-item img{
+      width:100px;
+      height:80px;
+      object-fit:cover;
+      border-radius:10px;
+    }
+    .cart-item-info{flex:1}
+    .cart-item-actions{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .remove-btn{
+      background:#ff4444;
+      color:white;
+      border:none;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      transition:all 0.3s;
+    }
+    .remove-btn:hover{background:#cc0000;transform:scale(1.05)}
+    .cart-summary{
+      background:var(--glass);
+      border-radius:14px;
+      padding:20px;
+      margin-top:20px;
+      box-shadow:var(--card-shadow);
+    }
+    .empty-cart{
+      text-align:center;
+      padding:60px 20px;
+      color:var(--muted);
+    }
+
+    /* Map & Testimony styling (ditambahkan) */
+    #map {
+      max-width:1100px;
+      margin:40px auto;
+      padding:24px;
+      background:var(--glass);
+      border-radius:18px;
+      box-shadow:var(--card-shadow);
+    }
+    #map iframe {
+      width:100%;
+      height:380px;
+      border:0;
+      border-radius:12px;
+      display:block;
+    }
+    #testimony {
+      max-width:1100px;
+      margin:40px auto;
+      padding:24px;
+    }
+    .testimonial {
+      background:white;
+      border-radius:14px;
+      padding:16px;
+      box-shadow:var(--card-shadow);
+    }
+    .testimonial img {
+      width:60px;height:60px;border-radius:50%;object-fit:cover;margin-bottom:12px;
+    }
+    .testimonial strong {
+      display:block;margin-top:8px;color:var(--pink-3);
+    }
+
+    footer{padding:28px;text-align:center;color:var(--muted)}
+
+    /* Mobile Menu */
+    .mobile-menu-btn{
+      display:none;
+      background:transparent;
+      border:none;
+      font-size:28px;
+      cursor:pointer;
+      color:var(--accent);
+    }
+    .mobile-nav{
+      display:none;
+      position:fixed;
+      top:0;
+      right:-100%;
+      width:280px;
+      height:100vh;
+      background:white;
+      box-shadow:-5px 0 20px rgba(0,0,0,0.1);
+      padding:80px 20px 20px;
+      transition:right 0.3s;
+      z-index:1001;
+    }
+    .mobile-nav.active{
+      right:0;
+    }
+    .mobile-nav a, .mobile-nav button{
+      display:block;
+      width:100%;
+      padding:16px;
+      margin-bottom:8px;
+      text-align:left;
+      border-radius:12px;
+      border:none;
+      background:white;
+      color:var(--accent);
+      font-weight:600;
+      cursor:pointer;
+      transition:all 0.3s;
+    }
+    .mobile-nav a:hover, .mobile-nav button:hover{
+      background:var(--pink-1);
+    }
+    .mobile-nav .cart-btn{
+      background:var(--pink-3);
+      color:white;
+      justify-content:center;
+    }
+    .close-mobile-menu{
+      position:absolute;
+      top:20px;
+      right:20px;
+      background:transparent;
+      border:none;
+      font-size:32px;
+      cursor:pointer;
+      color:var(--muted);
+    }
+    .mobile-overlay{
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:rgba(0,0,0,0.5);
+      z-index:1000;
+    }
+    .mobile-overlay.active{
+      display:block;
+    }
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;gap:16px}
+      .hero-left,.hero-right{width:100%}
+      .hero h1{font-size:32px}
+      .hero-left{padding:20px}
+      nav{display:none}
+      .mobile-menu-btn{display:block}
+      .mobile-nav{display:block}
+      .cake-character{width:70px;height:70px;bottom:20px;right:20px}
+      .card-gallery{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+      .product img{height:140px}
+      .brand-name{font-size:20px}
+      .brand-tagline{font-size:9px}
+      .cart-item{flex-direction:column;align-items:flex-start}
+      .cart-item img{width:100%;height:150px}
+      .cart-item-actions{width:100%;justify-content:space-between}
+    }
+
+    @media (max-width:600px){
+      header{padding:20px 16px}
+      .hero{padding:16px}
+      .hero h1{font-size:28px}
+      .hero .btns{flex-direction:column}
+      .btn{width:100%}
+      .logo{width:56px;height:56px}
+      .brand-name{font-size:18px}
+      .menu-tabs{gap:8px}
+      .tab-btn{padding:8px 16px;font-size:14px}
+      section{padding:16px!important}
+      .gallery{padding:16px}
+      .modal-content{margin:10px;max-width:calc(100% - 20px)}
+      .cart-btn{padding:8px 12px;font-size:14px}
+    }
+  </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Moody.Cake</a>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#products">Produk</a></li>
-                    <li><a href="#gallery">Galeri</a></li>
-                    <li><a href="#about">Tentang</a></li>
-                    <li><a href="#contact">Kontak</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <!-- Floating Cake Character -->
+  <div class="cake-character" onclick="showRandomMessage()" title="Klik aku!">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="50" cy="85" rx="35" ry="8" fill="#ffb6d5"/>
+      <rect x="15" y="60" width="70" height="25" rx="5" fill="#ff6fa8"/>
+      <rect x="15" y="60" width="70" height="8" rx="3" fill="#ffd1e5"/>
+      <rect x="20" y="40" width="60" height="20" rx="5" fill="#ffb6d5"/>
+      <rect x="20" y="40" width="60" height="6" rx="3" fill="#ffe0f0"/>
+      <rect x="25" y="25" width="50" height="15" rx="5" fill="#ff6fa8"/>
+      <rect x="25" y="25" width="50" height="5" rx="3" fill="#ffd1e5"/>
+      <circle cx="50" cy="20" r="6" fill="#ff4757"/>
+      <circle cx="50" cy="20" r="4" fill="#ff6b7a"/>
+      <ellipse cx="48" cy="18" rx="2" ry="1.5" fill="#ff9aa2" opacity="0.7"/>
+      <circle cx="30" cy="50" r="2" fill="#fff"/>
+      <circle cx="45" cy="52" r="2" fill="#fff"/>
+      <circle cx="60" cy="48" r="2" fill="#fff"/>
+      <circle cx="35" cy="70" r="2" fill="#fff"/>
+      <circle cx="50" cy="72" r="2" fill="#fff"/>
+      <circle cx="65" cy="68" r="2" fill="#fff"/>
+      <rect x="47" y="10" width="6" height="12" rx="1" fill="#ffd93d"/>
+      <ellipse cx="50" cy="8" rx="4" ry="3" fill="#ff6348"/>
+      <ellipse cx="50" cy="6" rx="3" ry="2" fill="#ff8c7a" opacity="0.8"/>
+    </svg>
+  </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Kue Lezat untuk Setiap Suasana Hati</h1>
-            <p>Dibuat dengan bahan premium dan penuh cinta, setiap gigitan membawa kebahagiaan</p>
-            <a href="#order" class="btn">Pesan Sekarang</a>
+  <header>
+    <div class="brand">
+      <div class="logo" onclick="document.getElementById('logoInput').click()" title="Klik untuk upload logo">
+        <input type="file" id="logoInput" class="logo-input" accept="image/*" onchange="uploadLogo(event)">
+        <div class="logo-placeholder" id="logoPlaceholder">
+          <span>🎂</span>
         </div>
+        <img id="logoImage" style="display:none" src="" alt="Logo">
+      </div>
+      <div>
+        <div class="brand-name">MoodyCake</div>
+        <div class="brand-tagline">✨ Made with Love ✨</div>
+      </div>
+    </div>
+    <nav>
+      <a onclick="showHome()">Home</a>
+      <a onclick="scrollToSection('menu')">Menu</a>
+      <a onclick="scrollToSection('about')">About</a>
+      <!-- NAV LINK TAMBAHAN -->
+      <a onclick="scrollToSection('map')">Lokasi</a>
+      <a onclick="scrollToSection('testimony')">Testimony</a>
+      <button class="cart-btn" onclick="showCart()">
+        🛒 Keranjang
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </nav>
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <button class="close-mobile-menu" onclick="toggleMobileMenu()">×</button>
+    <a onclick="showHome(); toggleMobileMenu()">🏠 Home</a>
+    <a onclick="scrollToSection('menu'); toggleMobileMenu()">🍰 Menu</a>
+    <a onclick="scrollToSection('about'); toggleMobileMenu()">ℹ About</a>
+    <!-- MOBILE NAV LINK TAMBAHAN -->
+    <a onclick="scrollToSection('map'); toggleMobileMenu()">🗺 Lokasi</a>
+    <a onclick="scrollToSection('testimony'); toggleMobileMenu()">💬 Testimony</a>
+    <button class="cart-btn" onclick="showCart(); toggleMobileMenu()">
+      🛒 Keranjang
+      <span class="cart-badge" id="cartBadgeMobile">0</span>
+    </button>
+  </div>
+
+  <main id="mainContent">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>MoodyCake — Kue Cantik & Lezat</h1>
+        <p class="lead">Koleksi bento cake, custom design, dan kue ulang tahun. Rasa yang menyentuh hati.</p>
+        <div class="btns">
+          <button class="btn btn-pink" onclick="scrollToSection('menu')">Lihat Menu</button>
+          <button class="btn btn-outline" onclick="showCart()">Lihat Keranjang</button>
+        </div>
+
+        <div style="margin-top:18px" class="card-gallery">
+          <div class="card" onclick="openQuickView(1)">
+            <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=300&q=60" alt="Rose Pink Delight">
+            <div>
+              <div style="font-weight:700">Rose Pink Delight</div>
+              <div style="font-size:13px;color:var(--muted)">Buttercream dengan bunga mawar</div>
+              <div class="price">Rp 180.000</div>
+            </div>
+          </div>
+
+          <div class="card" onclick="openQuickView(2)">
+            <img src="https://images.unsplash.com/photo-1559628233-efb10f6a5f13?auto=format&fit=crop&w=300&q=60" alt="Mini Cupcakes">
+            <div>
+              <div style="font-weight:700">Mini Cupcakes (6)</div>
+              <div style="font-size:13px;color:var(--muted)">Vanilla, Cokelat, Red Velvet</div>
+              <div class="price">Rp 85.000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <img src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?auto=format&fit=crop&w=800&q=60" alt="Featured Cake" style="width:100%;border-radius:18px;box-shadow:var(--card-shadow)">
+      </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <h2 class="section-title">Produk Unggulan</h2>
-            <div class="products-grid">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <img src="https://placeholder-image-service.onrender.com/image/400x300?prompt=Red velvet cake with cream cheese frosting and decorative berries&id=prod1" alt="Red velvet cake dengan frosting keju krim dan hiasan beri" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Red Velvet Luxury</h3>
-                        <p class="product-desc">Kue red velvet lembut dengan frosting keju krim yang creamy</p>
-                        <p class="product-price">Rp 250.000</p>
-                        <a href="#order" class="btn">Pesan</a>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <img src="https://placeholder-image-service.onrender.com/image/400x300?prompt=Chocolate cake with chocolate ganache and strawberry decoration&id=prod2" alt="Kue cokelat dengan ganache cokelat dan hiasan stroberi" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Chocolate Indulgence</h3>
-                        <p class="product-desc">Kue cokelat rich dengan ganache dan sentuhan stroberi segar</p>
-                        <p class="product-price">Rp 280.000</p>
-                        <a href="#order" class="btn">Pesan</a>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <img src="https://placeholder-image-service.onrender.com/image/400x300?prompt=Vanilla cake with pastel colored buttercream flowers&id=prod3" alt="Kue vanilla dengan buttercream bunga warna pastel" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Vanilla Bloom</h3>
-                        <p class="product-desc">Kue vanilla classic dengan dekorasi buttercream bunga yang elegan</p>
-                        <p class="product-price">Rp 220.000</p>
-                        <a href="#order" class="btn">Pesan</a>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <img src="https://placeholder-image-service.onrender.com/image/400x300?prompt=Matcha green tea cake with white chocolate decoration&id=prod4" alt="Kue matcha green tea dengan dekorasi white chocolate" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Matcha Paradise</h3>
-                        <p class="product-desc">Kue matcha dengan rasa authentic dan sentuhan white chocolate</p>
-                        <p class="product-price">Rp 270.000</p>
-                        <a href="#order" class="btn">Pesan</a>
-                    </div>
-                </div>
-                
-                <!-- Product 5 -->
-                <div class="product-card">
-                    <img src="https://placeholder-image-service.onrender.com/image/400x300?prompt=Carrot cake with cream cheese frosting and walnuts&id=prod5" alt="Kue carrot dengan frosting keju krim dan taburan walnut" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Carrot Delight</h3>
-                        <p class="product-desc">Kue carrot moist dengan frosting keju krim dan walnut crunchy</p>
-                        <p class="product-price">Rp 230.000</p>
-                        <a href="#order" class="btn">Pesan</a>
-                    </div>
-                </div>
-                
-                <!-- Product 6 -->
-                <div class="product-card">
-                    <img src="https://placeholder-image-service.onrender.com/image/400x300?prompt=Cheesecake with berry compote topping&id=prod6" alt="Cheesecake dengan topping berry compote" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Berry Cheesecake</h3>
-                        <p class="product-desc">Cheesecake creamy dengan topping berry compote yang segar</p
+    <section id="menu" style="max-width:1100px;margin:0 auto;padding:0 24px">
+      <h2 style="font-family:'Playfair Display';font-size:28px">Menu Kami</h2>
+      <p style="color:var(--muted);margin-top:6px">Jelajahi koleksi kue terbaik kami.</p>
+
+      <div class="menu-tabs">
+        <button class="tab-btn active" onclick="filterMenu('featured')">⭐ Menu Pilihan</button>
+        <button class="tab-btn" onclick="filterMenu('all')">🍰 Semua Menu</button>
+      </div>
+
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <section id="about" style="max-width:1100px;margin:40px auto;padding:24px;background:var(--glass);border-radius:18px;box-shadow:var(--card-shadow)">
+      <h2 style="font-family:'Playfair Display';font-size:28px;margin-top:0">Tentang MoodyCake</h2>
+      <p style="color:var(--muted);line-height:1.8">
+        MoodyCake adalah cake shop yang berdedikasi untuk menghadirkan kue-kue berkualitas dengan desain cantik dan rasa yang memanjakan lidah. 
+        Setiap kue dibuat dengan penuh cinta dan perhatian terhadap detail, menggunakan bahan-bahan premium pilihan.
+      </p>
+      <p style="color:var(--muted);line-height:1.8">
+        Kami melayani custom design untuk berbagai acara spesial Anda. Mari wujudkan kue impian Anda bersama MoodyCake! 🎂💕
+      </p>
+    </section>
+
+    <!-- MAP SECTION (ditambahkan setelah About) -->
+    <section id="map">
+      <h2 style="font-family:'Playfair Display';font-size:28px;margin-top:0">📍 Lokasi Kami</h2>
+      <p style="color:var(--muted);margin-bottom:16px">Kunjungi langsung toko MoodyCake di lokasi berikut:</p>
+      <div style="width:100%;height:380px;border-radius:12px;overflow:hidden;box-shadow:var(--card-shadow)">
+        <!-- Default embed - ganti parameter src dengan link Google Maps yang benar untuk akurasi alamat -->
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.059309939774!2d110.36668867422102!3d-7.880285778720805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57c5a91c59ad%3A0x9c2f1540a1b4f2!2sBakery%20Shop!5e0!3m2!1sen!2sid!4v1697200000000!5m2!1sen!2sid" 
+          width="100%" 
+          height="100%" 
+          style="border:0" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- TESTIMONY SECTION (ditambahkan sebelum footer) -->
+    <section id="testimony">
+      <h2 style="font-family:'Playfair Display';font-size:28px;margin-top:0">💬 Testimoni Pelanggan</h2>
+      <p style="color:var(--muted);margin-bottom:16px">Apa kata mereka tentang MoodyCake?</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px">
+        <div class="testimonial">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=60" alt="Customer 1">
+          <p style="margin:0;color:var(--muted)">“Kuenya enak banget, desainnya cantik! Anak saya suka sekali ulang tahunnya pakai kue MoodyCake.”</p>
+          <strong>– Sarah, Jogja</strong>
+        </div>
+
+        <div class="testimonial">
+          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=300&q=60" alt="Customer 2">
+          <p style="margin:0;color:var(--muted)">“Pesan cupcakes untuk kantor, semua teman suka. Rasanya pas dan pengiriman cepat!”</p>
+          <strong>– Andi, Jakarta</strong>
+        </div>
+
+        <div class="testimonial">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=300&q=60" alt="Customer 3">
+          <p style="margin:0;color:var(--muted)">“Recommended banget! Bisa custom sesuai request, hasilnya persis yang saya minta.”</p>
+          <strong>– Mei, Bandung</strong>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Cart Page -->
+  <div class="cart-page" id="cartPage">
+    <h2 style="font-family:'Playfair Display';font-size:32px;margin-bottom:20px">🛒 Keranjang Belanja</h2>
+    <div id="cartItems"></div>
+    <div class="cart-summary" id="cartSummary" style="display:none">
+      <h3 style="margin-top:0">Ringkasan Pesanan</h3>
+      <div style="display:flex;justify-content:space-between;margin:12px 0">
+        <span>Total Item:</span>
+        <strong id="totalItems">0</strong>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin:12px 0;font-size:20px">
+        <strong>Total Harga:</strong>
+        <strong style="color:var(--pink-3)" id="totalPrice">Rp 0</strong>
+      </div>
+      <button class="btn btn-pink" style="width:100%;margin-top:16px" onclick="checkout()">Checkout via WhatsApp</button>
+      <button class="btn btn-outline" style="width:100%;margin-top:8px" onclick="showHome()">Lanjut Belanja</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="productModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle" style="margin:0;font-family:'Playfair Display'"></h2>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <img id="modalImage" src="" alt="">
+        <div id="modalBadge"></div>
+        <p id="modalDescription" style="color:var(--muted);margin-bottom:12px"></p>
+        <div class="price" id="modalPrice" style="font-size:24px"></div>
+        
+        <div class="quantity-control">
+          <button class="qty-btn" onclick="decreaseQty()">−</button>
+          <span class="qty-display" id="qtyDisplay">1</span>
+          <button class="qty-btn" onclick="increaseQty()">+</button>
+        </div>
+
+        <button class="btn btn-pink" style="width:100%" onclick="addToCart()">🛒 Tambah ke Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>MoodyCake</strong> &mdash; Cake shop kecil dengan sentuhan pink. Follow kami di Instagram: <em>@moodycake.id</em></p>
+    <small>© MoodyCake 2025</small>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        id: 1,
+        name: 'Rose Pink Delight',
+        description: 'Kue buttercream dihias bunga mawar edible yang cantik dan elegan.',
+        price: 180000,
+        image: 'https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=800&q=60',
+        featured: true,
+        badge: 'featured'
+      },
+      {
+        id: 2,
+        name: 'Mini Cupcakes (6)',
+        description: 'Pilihan rasa: vanilla, cokelat, red velvet. Sempurna untuk acara kecil.',
+        price: 85000,
+        image: 'https://images.unsplash.com/photo-1559628233-efb10f6a5f13?auto=format&fit=crop&w=800&q=60',
+        featured: true,
+        badge: 'popular'
+      },
+      {
+        id: 3,
+        name: 'Moody Layers',
+        description: 'Kue lapis lembut dengan pilihan buah segar. Tekstur yang memanjakan.',
+        price: 150000,
+        image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=60',
+        featured: false,
+        badge: 'new'
+      },
+      {
+        id: 4,
+        name: 'Custom Birthday Cake',
+        description: 'Desain custom sesuai permintaan. Hubungi untuk konsultasi desain Anda.',
+        price: 200000,
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=60',
+        featured: false,
+        badge: 'featured'
+      }
+    ];
+
+    let cart = [];
+    let currentProduct = null;
+    let currentQty = 1;
+    let currentFilter = 'featured';
+    let logoImageData = null;
+
+    const cakeMessages = [
+      "Hai! Aku cake character MoodyCake! 🎂",
+      "Kue kami dibuat dengan cinta! 💕",
+      "Sudah coba menu pilihan kami? 😋",
+      "Jangan lupa pesan kue favoritmu! 🍰",
+      "Setiap kue istimewa seperti kamu! ✨"
+    ];
+
+    function uploadLogo(event){
+      const file = event.target.files[0];
+      if(file && file.type.startsWith('image/')){
+        const reader = new FileReader();
+        reader.onload = function(e){
+          logoImageData = e.target.result;
+          document.getElementById('logoImage').src = logoImageData;
+          document.getElementById('logoImage').style.display = 'block';
+          document.getElementById('logoPlaceholder').style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function toggleMobileMenu(){
+      const mobileNav = document.getElementById('mobileNav');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+      mobileNav.classList.toggle('active');
+      mobileOverlay.classList.toggle('active');
+    }
+
+    function showRandomMessage(){
+      const message = cakeMessages[Math.floor(Math.random() * cakeMessages.length)];
+      alert(message);
+    }
+
+    function filterMenu(filter){
+      currentFilter = filter;
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if((filter === 'featured' && btn.textContent.includes('Pilihan')) ||
+           (filter === 'all' && btn.textContent.includes('Semua'))){
+          btn.classList.add('active');
+        }
+      });
+      renderProducts();
+    }
+
+    function renderProducts(){
+      const gallery = document.getElementById('gallery');
+      const filtered = currentFilter === 'featured' 
+        ? products.filter(p => p.featured)
+        : products;
+
+      gallery.innerHTML = filtered.map(p => `
+        <article class="product" onclick="openQuickView(${p.id})">
+          <img src="${p.image}" alt="${p.name}">
+          <div class="meta">
+            ${p.badge ? `<span class="badge badge-${p.badge}">${
+              p.badge === 'featured' ? '⭐ Pilihan' : 
+              p.badge === 'popular' ? '🔥 Populer' : 
+              '✨ Baru'
+            }</span>` : ''}
+            <h3>${p.name}</h3>
+            <p>${p.description}</p>
+            <div class="price">Rp ${p.price.toLocaleString('id-ID')}</div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function openQuickView(productId){
+      currentProduct = products.find(p => p.id === productId);
+      if(!currentProduct) return;
+      
+      currentQty = 1;
+      
+      document.getElementById('modalTitle').textContent = currentProduct.name;
+      document.getElementById('modalImage').src = currentProduct.image;
+      document.getElementById('modalDescription').textContent = currentProduct.description;
+      document.getElementById('modalPrice').textContent = 'Rp ' + currentProduct.price.toLocaleString('id-ID');
+      document.getElementById('qtyDisplay').textContent = currentQty;
+      
+      const badgeHtml = currentProduct.badge 
+        ? `<span class="badge badge-${currentProduct.badge}" style="margin-bottom:12px">${
+            currentProduct.badge === 'featured' ? '⭐ Pilihan' : 
+            currentProduct.badge === 'popular' ? '🔥 Populer' : 
+            '✨ Baru'
+          }</span>`
+        : '';
+      document.getElementById('modalBadge').innerHTML = badgeHtml;
+      
+      document.getElementById('productModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(){
+      document.getElementById('productModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function closeModalOnBackdrop(event){
+      if(event.target.id === 'productModal'){
+        closeModal();
+      }
+    }
+
+    function increaseQty(){
+      currentQty++;
+      document.getElementById('qtyDisplay').textContent = currentQty;
+    }
+
+    function decreaseQty(){
+      if(currentQty > 1){
+        currentQty--;
+        document.getElementById('qtyDisplay').textContent = currentQty;
+      }
+    }
+
+    function addToCart(){
+      const existingItem = cart.find(item => item.id === currentProduct.id);
+      
+      if(existingItem){
+        existingItem.quantity += currentQty;
+      } else {
+        cart.push({
+          ...currentProduct,
+          quantity: currentQty
+        });
+      }
+      
+      updateCartBadge();
+      closeModal();
+      // fixed: use template string so quotes don't break the JS
+      alert(`✅ ${currentProduct.name} (${currentQty}x) ditambahkan ke keranjang!`);
+    }
+
+    function updateCartBadge(){
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cartBadge').textContent = totalItems;
+      document.getElementById('cartBadgeMobile').textContent = totalItems;
+    }
+
+    function showCart(){
+      document.getElementById('mainContent').style.display = 'none';
+      document.getElementById('cartPage').classList.add('active');
+      window.scrollTo(0, 0);
+      renderCart();
+    }
+
+    function showHome(){
+      document.getElementById('mainContent').style.display = 'block';
+      document.getElementById('cartPage').classList.remove('active');
+      window.scrollTo(0, 0);
+    }
+
+    function renderCart(){
+      const cartItems = document.getElementById('cartItems');
+      const cartSummary = document.getElementById('cartSummary');
+      
+      if(cart.length === 0){
+        cartItems.innerHTML = `
+          <div class="empty-cart">
+            <h3>🛒 Keranjang Kosong</h3>
+            <p>Belum ada produk di keranjang Anda</p>
+            <button class="btn btn-pink" onclick="showHome()">Mulai Belanja</button>
+          </div>
+        `;
+        cartSummary.style.display = 'none';
+        return;
+      }
+
+      cartItems.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-item-info">
+            <h3 style="margin:0 0 4px">${item.name}</h3>
+            <div class="price">Rp ${item.price.toLocaleString('id-ID')}</div>
+          </div>
+          <div class="cart-item-actions">
+            <button class="qty-btn" onclick="updateCartQty(${index}, -1)">−</button>
+            <span class="qty-display">${item.quantity}</span>
+            <button class="qty-btn" onclick="updateCartQty(${index}, 1)">+</button>
+            <button class="remove-btn" onclick="removeFromCart(${index})">Hapus</button>
+          </div>
+        </div>
+      `).join('');
+
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      document.getElementById('totalItems').textContent = totalItems;
+      document.getElementById('totalPrice').textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
+      cartSummary.style.display = 'block';
+    }
+
+    function updateCartQty(index, change){
+      cart[index].quantity += change;
+      if(cart[index].quantity <= 0){
+        cart.splice(index, 1);
+      }
+      updateCartBadge();
+      renderCart();
+    }
+
+    function removeFromCart(index){
+      cart.splice(index, 1);
+      updateCartBadge();
+      renderCart();
+    }
+
+    function checkout(){
+      // build message lines safely
+      const message = cart.map(item => 
+        `- ${item.name} (${item.quantity}x) = Rp ${(item.price * item.quantity).toLocaleString('id-ID')}`
+      ).join('%0A');
+      
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const whatsappText = `Halo MoodyCake! Saya ingin memesan:%0A%0A${message}%0A%0ATotal: Rp ${total.toLocaleString('id-ID')}`;
+      
+      // encodeURIComponent to ensure safe URL
+      window.open('https://wa.me/6281234567890?text=' + encodeURIComponent(whatsappText), '_blank');
+    }
+
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    // Initialize products on page load
+    window.addEventListener('DOMContentLoaded', function(){
+      renderProducts();
+    });
+  </script>
+</body>
+</html>
