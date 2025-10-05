@@ -6,6 +6,7 @@
   <title>MoodyCake — Cake Shop</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
+    /* ---------- (AWAL: CSS LAMA DARI KAMU) ---------- */
     :root{
       --pink-1: #ffeef8;
       --pink-2: #ffb6d5;
@@ -137,7 +138,7 @@
     .hero-left{padding:28px;background:var(--glass);border-radius:18px;box-shadow:var(--card-shadow)}
     .hero h1{font-family:'Playfair Display';font-size:44px;margin:0 0 8px}
     .hero p.lead{margin:0 0 16px;color:var(--muted)}
-    .hero .btns{display:flex;gap:12px}
+    .hero .btns{Display:flex;gap:12px}
     .btn{padding:12px 18px;border-radius:12px;border:0;font-weight:700;cursor:pointer;transition:all 0.3s}
     .btn:hover{transform:translateY(-2px);box-shadow:var(--card-shadow)}
     .btn-pink{background:var(--pink-3);color:white}
@@ -394,7 +395,7 @@
       margin-top:24px;
     }
     .testimonial-card{
-      background:white;
+      background:rgb(255, 188, 216);
       padding:24px;
       border-radius:14px;
       box-shadow:var(--card-shadow);
@@ -414,7 +415,7 @@
     }
     .testimonial-card:hover{
       transform:translateY(-8px) scale(1.02);
-      box-shadow:0 15px 50px rgba(107,43,74,0.2);
+      box-shadow:0 15px 50px rgba(21, 8, 14, 0.2);
     }
     .testimonial-header{
       display:flex;
@@ -616,6 +617,16 @@
       .stats-grid{grid-template-columns:1fr}
       .stat-number{font-size:32px}
     }
+
+    /* ---------- (TAMBAHAN CSS UNTUK LOGIN/CHECKOUT/ORDER) ---------- */
+    /* kecilkan modal forms baru agar pas dengan design */
+    .small-form .modal-content{max-width:420px}
+    .form-row{display:flex;gap:10px}
+    .form-row .col{flex:1}
+    .order-list{max-width:1100px;margin:20px auto}
+    .order-card{background:white;padding:12px;border-radius:12px;box-shadow:var(--card-shadow);margin-bottom:12px}
+    .order-actions{display:flex;gap:8px;align-items:center}
+    .btn-ghost{background:transparent;border:2px solid var(--pink-2);color:var(--accent);padding:8px 12px;border-radius:8px}
   </style>
 </head>
 <body>
@@ -657,7 +668,9 @@
     <nav>
       <a onclick="showHome()">Home</a>
       <a onclick="scrollToSection('menu')">Menu</a>
+      <a onclick="scrollToSection('testimonials')">Testimoni</a>
       <a onclick="scrollToSection('about')">About</a>
+      <a onclick="scrollToSection('check-orders')">Check Pesanan</a>
       <button class="cart-btn" onclick="showCart()">
         🛒 Keranjang
         <span class="cart-badge" id="cartBadge">0</span>
@@ -672,7 +685,9 @@
     <button class="close-mobile-menu" onclick="toggleMobileMenu()">×</button>
     <a onclick="showHome(); toggleMobileMenu()">🏠 Home</a>
     <a onclick="scrollToSection('menu'); toggleMobileMenu()">🍰 Menu</a>
-    <a onclick="scrollToSection('about'); toggleMobileMenu()">ℹ️ About</a>
+    <a onclick="scrollToSection('testimonials'); toggleMobileMenu()">💬 Testimoni</a>
+    <a onclick="scrollToSection('about'); toggleMobileMenu()">ℹ About</a>
+    <a onclick="scrollToSection('check-orders'); toggleMobileMenu()">📦 Check Pesanan</a>
     <button class="cart-btn" onclick="showCart(); toggleMobileMenu()">
       🛒 Keranjang
       <span class="cart-badge" id="cartBadgeMobile">0</span>
@@ -691,27 +706,27 @@
 
         <div style="margin-top:18px" class="card-gallery">
           <div class="card" onclick="openQuickView(1)">
-            <img src="12.jpg" alt="Mini Bento Cake">
+            <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=300&q=60" alt="Rose Pink Delight">
             <div>
-              <div style="font-weight:700">Mini Cake</div>
-              <div style="font-size:13px;color:var(--muted)">Blackforest with creamy and cheese</div>
-              <div class="price">Rp 25.000</div>
+              <div style="font-weight:700">Rose Pink Delight</div>
+              <div style="font-size:13px;color:var(--muted)">Buttercream dengan bunga mawar</div>
+              <div class="price">Rp 180.000</div>
             </div>
           </div>
 
           <div class="card" onclick="openQuickView(2)">
-            <img src="13.jpg" alt="Mini Cupcakes">
+            <img src="https://images.unsplash.com/photo-1559628233-efb10f6a5f13?auto=format&fit=crop&w=300&q=60" alt="Mini Cupcakes">
             <div>
-              <div style="font-weight:700">Karakter Cake</div>
+              <div style="font-weight:700">Mini Cupcakes (6)</div>
               <div style="font-size:13px;color:var(--muted)">Vanilla, Cokelat, Red Velvet</div>
-              <div class="price">Rp 100.000</div>
+              <div class="price">Rp 85.000</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="hero-right">
-        <img src="center.jpg" alt="Featured Cake" style="width:100%;border-radius:18px;box-shadow:var(--card-shadow)">
+        <img src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?auto=format&fit=crop&w=800&q=60" alt="Featured Cake" style="width:100%;border-radius:18px;box-shadow:var(--card-shadow)">
       </div>
     </section>
 
@@ -720,7 +735,7 @@
       <p style="color:var(--muted);margin-top:6px">Jelajahi koleksi kue terbaik kami.</p>
 
       <div class="menu-tabs">
-        <button class="tab-btn active" onclick="filterMenu('featured')">⭐ Best Seller</button>
+        <button class="tab-btn active" onclick="filterMenu('featured')">⭐ Menu Pilihan</button>
         <button class="tab-btn" onclick="filterMenu('all')">🍰 Semua Menu</button>
       </div>
 
@@ -736,28 +751,6 @@
       <p style="color:var(--muted);line-height:1.8">
         Kami melayani custom design untuk berbagai acara spesial Anda. Mari wujudkan kue impian Anda bersama MoodyCake! 🎂💕
       </p>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-number" data-target="500">0</div>
-          <div class="stat-label">🎂 Kue Terjual</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-target="300">0</div>
-          <div class="stat-label">😊 Pelanggan Senang</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-target="50">0</div>
-          <div class="stat-label">✨ Custom Design</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-target="5">0</div>
-          <div class="stat-label">⭐ Rating</div>
-        </div>
-      </div>
     </section>
 
     <!-- Testimonial Section -->
@@ -861,14 +854,14 @@
           <div class="contact-icon">📍</div>
           <div class="contact-details">
             <h4>ALAMAT</h4>
-            <p>Jl.PLN, Pondok Karya<br>Pondok Aren, Tangerang Selatan</p>
+            <p>Jl. H. Paten, Pondok Karya<br>Pondok Aren, Tangerang Selatan</p>
           </div>
         </div>
         <div class="contact-card">
           <div class="contact-icon">📞</div>
           <div class="contact-details">
             <h4>TELEPON</h4>
-            <p>+62 896-5315-5023</p>
+            <p>+62 812-3456-7890</p>
           </div>
         </div>
         <div class="contact-card">
@@ -882,16 +875,23 @@
 
       <div class="map-container">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2467562355977!2d106.745223!3d-6.255049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1eec6f7114f%3Add63eeac13c17d80!2sBengkel%20Mengoz!5e0!3m2!1sen!2sid!4v1728067200000!5m2!1sen!2sid" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.3314520304044!2d106.73823631476945!3d-6.346234195407943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e579c5f0e74b%3A0x5e8e897f8f1e8b7a!2sJl.%20H.%20Paten%2C%20Pondok%20Karya%2C%20Kec.%20Pd.%20Aren%2C%20Kota%20Tangerang%20Selatan%2C%20Banten!5e0!3m2!1sen!2sid!4v1234567890" 
           allowfullscreen="" 
           loading="lazy" 
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
     </section>
+
+    <!-- Check Orders Section -->
+    <section id="check-orders" style="max-width:1100px;margin:40px auto;padding:24px;">
+      <h2 style="font-family:'Playfair Display';font-size:28px;margin-top:0">📦 Check Pesanan Anda</h2>
+      <p style="color:var(--muted)">Di sini Anda bisa melihat status pesanan. (Untuk demo ada tombol update status.)</p>
+      <div id="ordersContainer" class="order-list"></div>
+    </section>
   </main>
 
-  <!-- Cart Page -->
+  <!-- Cart Page (existing in your layout) -->
   <div class="cart-page" id="cartPage">
     <h2 style="font-family:'Playfair Display';font-size:32px;margin-bottom:20px">🛒 Keranjang Belanja</h2>
     <div id="cartItems"></div>
@@ -905,12 +905,12 @@
         <strong>Total Harga:</strong>
         <strong style="color:var(--pink-3)" id="totalPrice">Rp 0</strong>
       </div>
-      <button class="btn btn-pink" style="width:100%;margin-top:16px" onclick="checkout()">Checkout via WhatsApp</button>
+      <button class="btn btn-pink" style="width:100%;margin-top:16px" id="btnProceedCheckout">Checkout</button>
       <button class="btn btn-outline" style="width:100%;margin-top:8px" onclick="showHome()">Lanjut Belanja</button>
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- Modal: Product Quick View (lama) -->
   <div class="modal" id="productModal" onclick="closeModalOnBackdrop(event)">
     <div class="modal-content">
       <div class="modal-header">
@@ -929,7 +929,77 @@
           <button class="qty-btn" onclick="increaseQty()">+</button>
         </div>
 
-        <button class="btn btn-pink" style="width:100%" onclick="addToCart()">🛒 Tambah ke Keranjang</button>
+        <button class="btn btn-pink" style="width:100%" id="modalAddToCartBtn">🛒 Tambah ke Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: LOGIN -->
+  <div class="modal" id="loginModalSmall">
+    <div class="modal-content small-form">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:8px">
+        <h3 style="margin:0">Login</h3>
+        <button class="close-btn" onclick="closeAuthModals()">&times;</button>
+      </div>
+      <div style="padding:8px 0 20px">
+        <input id="loginEmail" type="email" placeholder="Email" style="padding:10px;width:100%;margin-bottom:8px;border-radius:8px;border:1px solid #eee">
+        <input id="loginPassword" type="password" placeholder="Password" style="padding:10px;width:100%;margin-bottom:8px;border-radius:8px;border:1px solid #eee">
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-pink" onclick="handleLogin()">Login</button>
+          <button class="btn-ghost" onclick="showRegisterModal()">Daftar</button>
+        </div>
+        <p style="color:var(--muted);font-size:13px;margin-top:10px">Untuk demo akun disimpan lokal (tidak aman untuk production).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: REGISTER -->
+  <div class="modal" id="registerModalSmall">
+    <div class="modal-content small-form">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:8px">
+        <h3 style="margin:0">Daftar Akun</h3>
+        <button class="close-btn" onclick="closeAuthModals()">&times;</button>
+      </div>
+      <div style="padding:8px 0 20px">
+        <input id="regName" type="text" placeholder="Nama Lengkap" style="padding:10px;width:100%;margin-bottom:8px;border-radius:8px;border:1px solid #eee">
+        <input id="regEmail" type="email" placeholder="Email" style="padding:10px;width:100%;margin-bottom:8px;border-radius:8px;border:1px solid #eee">
+        <input id="regPassword" type="password" placeholder="Password" style="padding:10px;width:100%;margin-bottom:8px;border-radius:8px;border:1px solid #eee">
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-pink" onclick="handleRegister()">Daftar</button>
+          <button class="btn-ghost" onclick="showLoginModal()">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: CHECKOUT FORM -->
+  <div class="modal" id="checkoutModalFull" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="margin:0">Form Checkout</h3>
+        <button class="close-btn" onclick="closeCheckoutModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input id="checkoutName" placeholder="Nama Penerima" style="padding:10px;border-radius:8px;border:1px solid #eee;width:100%;margin-bottom:8px">
+          <input id="checkoutPhone" placeholder="No Telepon" style="padding:10px;border-radius:8px;border:1px solid #eee;width:100%;margin-bottom:8px">
+          <textarea id="checkoutAddress" placeholder="Alamat lengkap" style="padding:10px;border-radius:8px;border:1px solid #eee;width:100%;margin-bottom:8px"></textarea>
+          <textarea id="checkoutRequest" placeholder="Request Desain (opsional)" style="padding:10px;border-radius:8px;border:1px solid #eee;width:100%;margin-bottom:8px"></textarea>
+          <label style="display:flex;align-items:center;gap:8px"><input id="checkoutBox" type="checkbox"> Tambah Box Coklat (+Rp 5.000)</label>
+          <div style="margin-top:8px">
+            <label style="display:block;margin-bottom:6px;font-weight:700">Metode Pembayaran</label>
+            <select id="checkoutPayment" style="padding:10px;border-radius:8px;border:1px solid #eee;width:100%">
+              <option value="Transfer">Transfer Bank</option>
+              <option value="QRIS">QRIS</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn btn-pink" onclick="submitCheckout()">Kirim & Buat Pesanan</button>
+          <button class="btn-ghost" onclick="closeCheckoutModal()">Batal</button>
+        </div>
+        <p style="color:var(--muted);margin-top:10px;font-size:13px">Setelah membuat pesanan, status awal akan <strong>Menunggu Pembayaran</strong>. Kamu bisa lihat status di menu Check Pesanan.</p>
       </div>
     </div>
   </div>
@@ -939,23 +1009,25 @@
     <small>© MoodyCake 2025</small>
   </footer>
 
+  <!-- ================== SCRIPT UTAMA (gabungan fitur lama + baru) ================== -->
   <script>
+    /* ---------- DATA PRODUK (SAMA DENGAN LAMA) ---------- */
     const products = [
       {
         id: 1,
-        name: 'Mini Cake',
+        name: 'Rose Pink Delight',
         description: 'Kue buttercream dihias bunga mawar edible yang cantik dan elegan.',
-        price: 25000,
-        image: '12.jpg',
+        price: 180000,
+        image: 'https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=800&q=60',
         featured: true,
         badge: 'featured'
       },
       {
         id: 2,
-        name: 'Karakter Cake',
+        name: 'Mini Cupcakes (6)',
         description: 'Pilihan rasa: vanilla, cokelat, red velvet. Sempurna untuk acara kecil.',
-        price: 100000,
-        image: '13.jpg',
+        price: 85000,
+        image: 'https://images.unsplash.com/photo-1559628233-efb10f6a5f13?auto=format&fit=crop&w=800&q=60',
         featured: true,
         badge: 'popular'
       },
@@ -979,10 +1051,45 @@
       }
     ];
 
-    let cart = [];
-    let currentProduct = null;
-    let currentQty = 1;
-    let currentFilter = 'featured';
+    /* ---------- STATE (users / session / cart / orders) ---------- */
+    let users = JSON.parse(localStorage.getItem('mc_users') || '[]'); // [{name,email,pass}]
+    let currentUser = JSON.parse(localStorage.getItem('mc_currentUser') || 'null'); // {name,email}
+    let cart = JSON.parse(localStorage.getItem('mc_cart') || '[]'); // [{id, name, price, qty, box}]
+    let orders = JSON.parse(localStorage.getItem('mc_orders') || '[]'); // [{id, userEmail, info..., status, items, payment}]
+
+    /* ---------- HELPER: persist -> localStorage ---------- */
+    function persistAll(){
+      localStorage.setItem('mc_users', JSON.stringify(users));
+      localStorage.setItem('mc_currentUser', JSON.stringify(currentUser));
+      localStorage.setItem('mc_cart', JSON.stringify(cart));
+      localStorage.setItem('mc_orders', JSON.stringify(orders));
+    }
+
+    /* ---------- UI INIT ---------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+      updateCartBadge();
+      renderCart(); // in case persisted items exist
+      renderOrders(); // show orders in check-orders
+      // hook add to cart button in modal
+      document.getElementById('modalAddToCartBtn').addEventListener('click', () => {
+        // use currentProductFromModal
+        addToCartFromModal();
+      });
+      // proceed checkout button in cart summary
+      document.getElementById('btnProceedCheckout').addEventListener('click', () => {
+        if(cart.length === 0){ alert('Keranjang kosong.'); return; }
+        openCheckoutModal();
+      });
+    });
+
+    /* ---------- ORIGINAL INTERACTIONS (dari codingan lama) ---------- */
+    function toggleMobileMenu(){
+      const mobileNav = document.getElementById('mobileNav');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+      mobileNav.classList.toggle('active');
+      mobileOverlay.classList.toggle('active');
+    }
 
     const cakeMessages = [
       "Hai! Aku cake character MoodyCake! 🎂",
@@ -992,18 +1099,24 @@
       "Setiap kue istimewa seperti kamu! ✨"
     ];
 
-    function toggleMobileMenu(){
-      const mobileNav = document.getElementById('mobileNav');
-      const mobileOverlay = document.getElementById('mobileOverlay');
-      mobileNav.classList.toggle('active');
-      mobileOverlay.classList.toggle('active');
-    }
-
     function showRandomMessage(){
       const message = cakeMessages[Math.floor(Math.random() * cakeMessages.length)];
       alert(message);
     }
 
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    function showHome(){
+      document.getElementById('mainContent').style.display = 'block';
+      document.getElementById('cartPage').classList.remove('active');
+      window.scrollTo(0, 0);
+    }
+
+    /* ---------- RENDER PRODUK (gabungan perbaikan template literal) ---------- */
+    let currentFilter = 'featured';
     function filterMenu(filter){
       currentFilter = filter;
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1022,39 +1135,42 @@
         ? products.filter(p => p.featured)
         : products;
 
-      gallery.innerHTML = filtered.map(p => `
-        <article class="product" onclick="openQuickView(${p.id})">
-          <img src="${p.image}" alt="${p.name}">
-          <div class="meta">
-            ${p.badge ? `<span class="badge badge-${p.badge}">${
-              p.badge === 'featured' ? '⭐ Pilihan' : 
-              p.badge === 'popular' ? '🔥 Populer' : 
-              '✨ Baru'
-            }</span>` : ''}
-            <h3>${p.name}</h3>
-            <p>${p.description}</p>
-            <div class="price">Rp ${p.price.toLocaleString('id-ID')}</div>
-          </div>
-        </article>
-      `).join('');
+      gallery.innerHTML = filtered.map(p => {
+        const badgeLabel = p.badge ? (p.badge === 'featured' ? '⭐ Pilihan' : p.badge === 'popular' ? '🔥 Populer' : '✨ Baru') : '';
+        return `
+          <article class="product" onclick="openQuickView(${p.id})">
+            <img src="${p.image}" alt="${p.name}">
+            <div class="meta">
+              ${p.badge ? `<span class="badge badge-${p.badge}">${badgeLabel}</span>` : ''}
+              <h3>${p.name}</h3>
+              <p>${p.description}</p>
+              <div class="price">Rp ${p.price.toLocaleString('id-ID')}</div>
+            </div>
+          </article>
+        `;
+      }).join('');
     }
 
+    /* ---------- PRODUCT QUICK VIEW (lama) ---------- */
+    let currentProductFromModal = null;
+    let currentQty = 1;
+
     function openQuickView(productId){
-      currentProduct = products.find(p => p.id === productId);
-      if(!currentProduct) return;
+      currentProductFromModal = products.find(p => p.id === productId);
+      if(!currentProductFromModal) return;
       
       currentQty = 1;
       
-      document.getElementById('modalTitle').textContent = currentProduct.name;
-      document.getElementById('modalImage').src = currentProduct.image;
-      document.getElementById('modalDescription').textContent = currentProduct.description;
-      document.getElementById('modalPrice').textContent = 'Rp ' + currentProduct.price.toLocaleString('id-ID');
+      document.getElementById('modalTitle').textContent = currentProductFromModal.name;
+      document.getElementById('modalImage').src = currentProductFromModal.image;
+      document.getElementById('modalDescription').textContent = currentProductFromModal.description;
+      document.getElementById('modalPrice').textContent = 'Rp ' + currentProductFromModal.price.toLocaleString('id-ID');
       document.getElementById('qtyDisplay').textContent = currentQty;
       
-      const badgeHtml = currentProduct.badge 
-        ? `<span class="badge badge-${currentProduct.badge}" style="margin-bottom:12px">${
-            currentProduct.badge === 'featured' ? '⭐ Pilihan' : 
-            currentProduct.badge === 'popular' ? '🔥 Populer' : 
+      const badgeHtml = currentProductFromModal.badge 
+        ? `<span class="badge badge-${currentProductFromModal.badge}" style="margin-bottom:12px">${
+            currentProductFromModal.badge === 'featured' ? '⭐ Pilihan' : 
+            currentProductFromModal.badge === 'popular' ? '🔥 Populer' : 
             '✨ Baru'
           }</span>`
         : '';
@@ -1070,7 +1186,7 @@
     }
 
     function closeModalOnBackdrop(event){
-      if(event.target.id === 'productModal'){
+      if(event.target.id === 'productModal' || event.target.id === 'checkoutModalFull'){
         closeModal();
       }
     }
@@ -1087,40 +1203,168 @@
       }
     }
 
-    function addToCart(){
-      const existingItem = cart.find(item => item.id === currentProduct.id);
-      
-      if(existingItem){
-        existingItem.quantity += currentQty;
+    /* ---------- NEW: AUTH (register/login/logout) ---------- */
+    function showLoginModal(){
+      document.getElementById('loginModalSmall').classList.add('active');
+    }
+    function showRegisterModal(){
+      document.getElementById('registerModalSmall').classList.add('active');
+    }
+    function closeAuthModals(){
+      document.getElementById('loginModalSmall').classList.remove('active');
+      document.getElementById('registerModalSmall').classList.remove('active');
+    }
+
+    function handleRegister(){
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('regPassword').value;
+      if(!name || !email || !pass){ alert('Lengkapi semua data.'); return; }
+      if(users.find(u=>u.email === email)){ alert('Email sudah terdaftar. Silakan login.'); showLoginModal(); return; }
+      users.push({name, email, pass});
+      persistAll();
+      alert('Registrasi berhasil. Silakan login.');
+      closeAuthModals();
+      showLoginModal();
+    }
+
+    function handleLogin(){
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('loginPassword').value;
+      const u = users.find(x => x.email === email && x.pass === pass);
+      if(u){
+        currentUser = {name: u.name, email: u.email};
+        persistAll();
+        closeAuthModals();
+        alert('Login berhasil. Halo, ' + currentUser.name + '!');
+        updateAuthUI();
       } else {
-        cart.push({
-          ...currentProduct,
-          quantity: currentQty
-        });
+        alert('Email atau password salah.');
       }
-      
-      updateCartBadge();
+    }
+
+    function logout(){
+      if(confirm('Yakin ingin logout?')){
+        currentUser = null;
+        persistAll();
+        updateAuthUI();
+        alert('Anda telah logout.');
+      }
+    }
+
+    function updateAuthUI(){
+      // ubah header: jika login, tampilkan nama & tombol logout, jika tidak, tombol login
+      const nav = document.querySelector('header nav');
+      // remove any existing user-control
+      const old = document.getElementById('userControl');
+      if(old) old.remove();
+
+      const container = document.createElement('div');
+      container.id = 'userControl';
+      container.style.display = 'flex';
+      container.style.alignItems = 'center';
+      container.style.gap = '8px';
+
+      if(currentUser){
+        const hello = document.createElement('div');
+        hello.textContent = 'Halo, ' + currentUser.name;
+        hello.style.fontWeight = '700';
+        hello.style.color = 'var(--muted)';
+        const logoutBtn = document.createElement('button');
+        logoutBtn.className = 'cart-btn';
+        logoutBtn.style.background = 'transparent';
+        logoutBtn.style.color = 'var(--accent)';
+        logoutBtn.style.border = '2px solid var(--pink-2)';
+        logoutBtn.textContent = 'Logout';
+        logoutBtn.onclick = logout;
+
+        const chkBtn = document.createElement('button');
+        chkBtn.className = 'cart-btn';
+        chkBtn.style.background = 'var(--pink-3)';
+        chkBtn.style.color = 'white';
+        chkBtn.textContent = 'Check Pesanan';
+        chkBtn.onclick = () => { scrollToSection('check-orders'); };
+
+        container.appendChild(hello);
+        container.appendChild(chkBtn);
+        container.appendChild(logoutBtn);
+      } else {
+        const loginBtn = document.createElement('button');
+        loginBtn.className = 'cart-btn';
+        loginBtn.style.background = 'var(--pink-3)';
+        loginBtn.style.color = 'white';
+        loginBtn.textContent = 'Login / Daftar';
+        loginBtn.onclick = () => { showLoginModal(); };
+        container.appendChild(loginBtn);
+      }
+      // append to header
+      document.querySelector('header').appendChild(container);
+    }
+
+    updateAuthUI(); // init
+
+    /* ---------- CART LOGIC (baru: butuh login sebelum menambah) ---------- */
+    function addToCartFromModal(){
+      if(!currentUser){ alert('Silakan login terlebih dahulu sebelum menambah ke keranjang.'); showLoginModal(); return; }
+      if(!currentProductFromModal) return;
+      addItemToCart(currentProductFromModal.id, currentQty, false);
       closeModal();
-      alert(`✅ ${currentProduct.name} (${currentQty}x) ditambahkan ke keranjang!`);
+      alert(`${currentProductFromModal.name} (${currentQty}x) ditambahkan ke keranjang.`);
     }
 
-    function updateCartBadge(){
-      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-      document.getElementById('cartBadge').textContent = totalItems;
-      document.getElementById('cartBadgeMobile').textContent = totalItems;
-    }
-
-    function showCart(){
-      document.getElementById('mainContent').style.display = 'none';
-      document.getElementById('cartPage').classList.add('active');
-      window.scrollTo(0, 0);
+    // backward-compatible: if someone calls addToCart(id, price) we support both
+    function addToCart(idOrName, priceOrQty){
+      // if first arg is number -> interpret as productId
+      if(typeof idOrName === 'number'){
+        // add by productId with qty = priceOrQty (if numeric) else 1
+        const prod = products.find(p => p.id === idOrName);
+        const qty = (typeof priceOrQty === 'number') ? priceOrQty : 1;
+        if(!currentUser){ alert('Silakan login terlebih dahulu sebelum menambah ke keranjang.'); showLoginModal(); return; }
+        addItemToCart(prod.id, qty, false);
+        alert(`${prod.name} (${qty}x) ditambahkan ke keranjang.`);
+        return;
+      }
+      // else older signatures (name, price) from the earlier small demo
+      if(!currentUser){ alert('Silakan login terlebih dahulu sebelum menambah ke keranjang.'); showLoginModal(); return; }
+      const name = idOrName;
+      const price = priceOrQty || 0;
+      // push simple item
+      cart.push({ id: 'ad-hoc-' + Date.now(), name, price, qty:1, box:false });
+      persistAll();
+      updateCartBadge();
       renderCart();
     }
 
-    function showHome(){
-      document.getElementById('mainContent').style.display = 'block';
-      document.getElementById('cartPage').classList.remove('active');
-      window.scrollTo(0, 0);
+    // core add by product id
+    function addItemToCart(productId, qty=1, addBox=false){
+      const prod = products.find(p => p.id === productId);
+      if(!prod) return;
+      // if same product exists (without box), increase qty
+      const existing = cart.find(i => i.id === productId && i.box === addBox);
+      if(existing){
+        existing.qty += qty;
+      } else {
+        cart.push({ id: productId, name: prod.name, price: prod.price, qty: qty, box: addBox });
+      }
+      persistAll();
+      updateCartBadge();
+      renderCart();
+    }
+
+    function updateCartBadge(){
+      const totalItems = cart.reduce((s,i)=> s + i.qty, 0);
+      const el1 = document.getElementById('cartBadge');
+      const el2 = document.getElementById('cartBadgeMobile');
+      if(el1) el1.textContent = totalItems;
+      if(el2) el2.textContent = totalItems;
+    }
+
+    function showCart(){
+      // show cart page overlay from original layout
+      document.getElementById('mainContent').style.display = 'none';
+      document.getElementById('cartPage').classList.add('active');
+      window.scrollTo(0,0);
+      renderCart();
     }
 
     function renderCart(){
@@ -1136,68 +1380,236 @@
           </div>
         `;
         cartSummary.style.display = 'none';
+        updateCartBadge();
         return;
       }
 
       cartItems.innerHTML = cart.map((item, index) => `
         <div class="cart-item">
-          <img src="${item.image}" alt="${item.name}">
+          <img src="${(typeof item.id === 'number') ? (products.find(p=>p.id===item.id)||{}).image : ''}" alt="${item.name}">
           <div class="cart-item-info">
             <h3 style="margin:0 0 4px">${item.name}</h3>
             <div class="price">Rp ${item.price.toLocaleString('id-ID')}</div>
+            ${item.box ? '<div style="font-size:13px;color:var(--muted)">+ Box Coklat</div>' : ''}
           </div>
           <div class="cart-item-actions">
             <button class="qty-btn" onclick="updateCartQty(${index}, -1)">−</button>
-            <span class="qty-display">${item.quantity}</span>
+            <span class="qty-display">${item.qty}</span>
             <button class="qty-btn" onclick="updateCartQty(${index}, 1)">+</button>
             <button class="remove-btn" onclick="removeFromCart(${index})">Hapus</button>
           </div>
         </div>
       `).join('');
 
-      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty) + (item.box ? 5000*item.qty : 0), 0);
 
       document.getElementById('totalItems').textContent = totalItems;
       document.getElementById('totalPrice').textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
       cartSummary.style.display = 'block';
+      updateCartBadge();
     }
 
     function updateCartQty(index, change){
-      cart[index].quantity += change;
-      if(cart[index].quantity <= 0){
+      cart[index].qty += change;
+      if(cart[index].qty <= 0){
         cart.splice(index, 1);
       }
+      persistAll();
       updateCartBadge();
       renderCart();
     }
 
     function removeFromCart(index){
       cart.splice(index, 1);
+      persistAll();
       updateCartBadge();
       renderCart();
     }
 
-    function checkout(){
-      const message = cart.map(item => 
-        `- ${item.name} (${item.quantity}x) = Rp ${(item.price * item.quantity).toLocaleString('id-ID')}`
-      ).join('%0A');
-      
-      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      const whatsappText = `Halo MoodyCake! Saya ingin memesan:%0A%0A${message}%0A%0ATotal: Rp ${total.toLocaleString('id-ID')}`;
-      
-      window.open(`https://wa.me/6283198376726?text=${whatsappText}`, '_blank');
+    /* ---------- CHECKOUT FLOW (baru) ---------- */
+    function openCheckoutModal(){
+      if(!currentUser){ alert('Silakan login terlebih dahulu.'); showLoginModal(); return; }
+      // prefill name & phone if available
+      document.getElementById('checkoutName').value = currentUser ? currentUser.name : '';
+      document.getElementById('checkoutPhone').value = '';
+      document.getElementById('checkoutAddress').value = '';
+      document.getElementById('checkoutRequest').value = '';
+      document.getElementById('checkoutBox').checked = false;
+      document.getElementById('checkoutPayment').value = 'Transfer';
+      document.getElementById('checkoutModalFull').classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
-    function scrollToSection(id){
-      const el = document.getElementById(id);
-      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    function closeCheckoutModal(){
+      document.getElementById('checkoutModalFull').classList.remove('active');
+      document.body.style.overflow = 'auto';
     }
 
-    // Initialize products on page load
-    window.addEventListener('DOMContentLoaded', function(){
-      renderProducts();
-    });
+    function submitCheckout(){
+      // validate
+      const name = document.getElementById('checkoutName').value.trim();
+      const phone = document.getElementById('checkoutPhone').value.trim();
+      const addr = document.getElementById('checkoutAddress').value.trim();
+      const req = document.getElementById('checkoutRequest').value.trim();
+      const boxChecked = document.getElementById('checkoutBox').checked;
+      const payment = document.getElementById('checkoutPayment').value;
+
+      if(!name || !phone || !addr){ alert('Mohon lengkapi Nama, No Telepon, dan Alamat.'); return; }
+      if(cart.length === 0){ alert('Keranjang kosong.'); return; }
+
+      const total = cart.reduce((s,i) => s + (i.price * i.qty) + (i.box ? 5000*i.qty : 0), 0) + (boxChecked ? 0 : 0);
+
+      // create order object
+      const orderId = 'ORD' + Date.now();
+      const order = {
+        id: orderId,
+        userEmail: currentUser.email,
+        userName: name,
+        phone,
+        address: addr,
+        request: req,
+        boxAdded: boxChecked,
+        paymentMethod: payment,
+        items: JSON.parse(JSON.stringify(cart)),
+        total,
+        createdAt: new Date().toISOString(),
+        status: 'Menunggu Pembayaran' // initial status
+      };
+
+      orders.push(order);
+      // clear cart
+      cart = [];
+      persistAll();
+      updateCartBadge();
+      renderCart();
+      closeCheckoutModal();
+      alert('Pesanan dibuat: ' + orderId + '. Silakan lakukan pembayaran via ' + payment + '. Status awal: Menunggu Pembayaran.');
+      renderOrders();
+      showHome();
+      scrollToSection('check-orders');
+    }
+
+    /* ---------- ORDERS (Check Pesanan) ---------- */
+    function renderOrders(){
+      const container = document.getElementById('ordersContainer');
+      container.innerHTML = '';
+      // show only current user's orders (or all if not logged)
+      const list = currentUser ? orders.filter(o => o.userEmail === currentUser.email) : orders;
+      if(list.length === 0){
+        container.innerHTML = `<div style="padding:20px;background:var(--glass);border-radius:12px;text-align:center;color:var(--muted)">Belum ada pesanan.</div>`;
+        return;
+      }
+      list.forEach(o => {
+        const itemsHtml = o.items.map(it => `${it.name} (${it.qty}x)`).join(', ');
+        const card = document.createElement('div');
+        card.className = 'order-card';
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div>
+              <strong>${o.id}</strong><div style="font-size:13px;color:var(--muted)">${new Date(o.createdAt).toLocaleString()}</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-weight:700;color:var(--pink-3)">Rp ${o.total.toLocaleString('id-ID')}</div>
+              <div style="font-size:13px;color:var(--muted)">${o.paymentMethod}</div>
+            </div>
+          </div>
+          <div style="margin-bottom:8px"><b>Penerima:</b> ${o.userName} — ${o.phone}</div>
+          <div style="margin-bottom:8px"><b>Alamat:</b> ${o.address}</div>
+          <div style="margin-bottom:8px"><b>Request:</b> ${o.request || '-'}</div>
+          <div style="margin-bottom:8px"><b>Items:</b> ${itemsHtml}</div>
+          <div style="margin-bottom:8px"><b>Status:</b> <span id="status-${o.id}">${o.status}</span></div>
+          <div class="order-actions">
+            ${o.status !== 'Selesai' ? `<button class="btn btn-outline" onclick="simulatePayment('${o.id}')">Saya Sudah Bayar</button>` : ''}
+            ${o.status !== 'Selesai' ? `<button class="btn btn-pink" onclick="advanceOrderStatus('${o.id}')">Update Status (Sim)</button>` : ''}
+            <button class="btn-ghost" onclick="viewOrderInvoice('${o.id}')">Lihat Detail</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function viewOrderInvoice(orderId){
+      const o = orders.find(x => x.id === orderId);
+      if(!o) return alert('Order tidak ditemukan');
+      let itemsHtml = o.items.map(it => `<li>${it.name} (${it.qty}x) - Rp ${it.price.toLocaleString('id-ID')}</li>`).join('');
+      const s = `
+        Pesanan: ${o.id}\n
+        Nama: ${o.userName}\n
+        Alamat: ${o.address}\n
+        Telepon: ${o.phone}\n
+        Request: ${o.request || '-'}\n
+        Metode: ${o.paymentMethod}\n
+        Status: ${o.status}\n
+        Items:\n${o.items.map(it=>` - ${it.name} (${it.qty}x)`).join('\n')}
+      `;
+      alert(s);
+    }
+
+    // simulate buyer confirming payment -> sets "Menunggu Konfirmasi" or "Diproses"
+    function simulatePayment(orderId){
+      const o = orders.find(x => x.id === orderId);
+      if(!o) return alert('Order tidak ditemukan');
+      if(o.status === 'Menunggu Pembayaran'){
+        o.status = 'Menunggu Konfirmasi';
+        persistAll();
+        renderOrders();
+        alert('Pembayaran dicatat. Status berubah jadi "Menunggu Konfirmasi". (Simulasi)');
+      } else {
+        alert('Tidak bisa membayar pada status ini.');
+      }
+    }
+
+    // simulate admin/process update status (Menunggu Pembayaran -> Diproses -> Dikirim -> Selesai)
+    function advanceOrderStatus(orderId){
+      const o = orders.find(x => x.id === orderId);
+      if(!o) return alert('Order tidak ditemukan');
+      const steps = ['Menunggu Pembayaran','Menunggu Konfirmasi','Diproses','Dikirim','Selesai'];
+      const idx = steps.indexOf(o.status);
+      if(idx === -1 || idx === steps.length - 1){
+        alert('Tidak ada status selanjutnya.');
+        return;
+      }
+      o.status = steps[idx + 1];
+      persistAll();
+      renderOrders();
+      alert('Status diperbarui: ' + o.status);
+    }
+
+    /* ---------- UTILITIES ---------- */
+    function persistAllAndRender(){
+      persistAll();
+      renderOrders();
+      renderCart();
+      updateCartBadge();
+    }
+
+    // small helper: when users click cart header from top-right
+    // already implemented as showCart()
+
+    // Expose some functions to global scope for onclick from HTML
+    window.showLogin = () => { showLoginModal(); };
+    window.showCart = showCart;
+    window.showHome = showHome;
+    window.scrollToSection = scrollToSection;
+    window.openQuickView = openQuickView;
+    window.addToCart = addToCart; // maintain signature for older quick demo
+    window.filterMenu = filterMenu;
+    window.showRandomMessage = showRandomMessage;
+    window.updateCartQty = updateCartQty;
+    window.removeFromCart = removeFromCart;
+    window.checkout = openCheckoutModal;
+    window.closeCheckoutModal = closeCheckoutModal;
+    window.submitCheckout = submitCheckout;
+    window.renderOrders = renderOrders;
+    window.advanceOrderStatus = advanceOrderStatus;
+    window.simulatePayment = simulatePayment;
+    window.viewOrderInvoice = viewOrderInvoice;
+    window.logout = logout;
+
+    // ensure persist on unload
+    window.addEventListener('beforeunload', persistAll);
+
   </script>
 </body>
 </html>
